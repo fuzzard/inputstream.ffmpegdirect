@@ -18,6 +18,10 @@ if(APPLE)
   list(APPEND gnutls_conf ac_cv_func_fork=no)
 endif()
 
+if(CORE_SYSTEM_NAME STREQUAL darwin_embedded)
+  list(APPEND gnutls_conf --disable-hardware-acceleration)
+endif()
+
 include(ExternalProject)
 externalproject_add(gnutls
                     SOURCE_DIR ${CMAKE_SOURCE_DIR}
